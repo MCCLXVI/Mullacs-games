@@ -11,7 +11,6 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/hangman" element={<Hangman />} />
-                    <Route path="/" element={<h1>Home Page</h1>} />
                 </Routes>
             </div>
         </Router>
