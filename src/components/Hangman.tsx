@@ -71,28 +71,28 @@ function App() {
   const renderWord = () => {
     return word.split('').map((letter, i) => (
       <span key={i} className="letter">
-        {guessedLetters.includes(letter) ? letter : '_'}
+        {guessedLetters.includes(letter) ? letter : ' _'}
       </span>
     ));
   };
 
   const renderHangman = () => {
     const hangmanParts = [
-      <circle key="head" cx="80" cy="33" r="10" stroke="white" strokeWidth="3" fill="none" />,
-      <line key="body" x1="80" y1="41" x2="80" y2="70" stroke="white" strokeWidth="3" />,
-      <line key="left-arm" x1="80" y1="50" x2="65" y2="45" stroke="white" strokeWidth="3" />,
-      <line key="right-arm" x1="80" y1="50" x2="95" y2="45" stroke="white" strokeWidth="3" />,
-      <line key="left-leg" x1="80" y1="70" x2="65" y2="85" stroke="white" strokeWidth="3" />,
-      <line key="right-leg" x1="80" y1="70" x2="95" y2="85" stroke="white" strokeWidth="3" />,
+      <circle key="head" cx="150" cy="50" r="20" stroke="white" strokeWidth="3" fill="none" />,
+      <line key="body" x1="150" y1="70" x2="150" y2="140" stroke="white" strokeWidth="3" />,
+      <line key="left-arm" x1="150" y1="90" x2="120" y2="110" stroke="white" strokeWidth="3" />,
+      <line key="right-arm" x1="150" y1="90" x2="180" y2="110" stroke="white" strokeWidth="3" />,
+      <line key="left-leg" x1="150" y1="140" x2="120" y2="190" stroke="white" strokeWidth="3" />,
+      <line key="right-leg" x1="150" y1="140" x2="180" y2="190" stroke="white" strokeWidth="3" />,
     ];
 
     return (
-      <svg height="120" width="100" className="hangman">
+      <svg height="300" width="200" className="hangman">
         {hangmanParts.slice(0, wrongGuesses)}
-        <line x1="10" y1="100" x2="90" y2="100" stroke="white" strokeWidth="3" />
-        <line x1="50" y1="10" x2="50" y2="100" stroke="white" strokeWidth="3" />
-        <line x1="50" y1="10" x2="80" y2="10" stroke="white" strokeWidth="3" />
-        <line x1="80" y1="10" x2="80" y2="25" stroke="white" strokeWidth="3" />
+        <line x1="10" y1="250" x2="190" y2="250" stroke="white" strokeWidth="3" />
+        <line x1="50" y1="10" x2="50" y2="250" stroke="white" strokeWidth="3" />
+        <line x1="50" y1="10" x2="150" y2="10" stroke="white" strokeWidth="3" />
+        <line x1="150" y1="10" x2="150" y2="30" stroke="white" strokeWidth="3" />
       </svg>
     );
   };
@@ -110,7 +110,7 @@ function App() {
   return (
     <div className="App">
       <h1>Hangman Game</h1>
-      <div className="game-container"> {/* New container for centering */}
+      <div className="game-container">
         {renderHangman()}
         <div className="word">{renderWord()}</div>
         <div className="keyboard">
@@ -119,6 +119,10 @@ function App() {
               key={letter}
               onClick={() => handleGuess(letter)}
               disabled={guessedLetters.includes(letter) || gameOver}
+              style={{
+                backgroundColor: guessedLetters.includes(letter) ? '#555' : '#563dc4',
+                color: guessedLetters.includes(letter) ? '#aaa' : 'white',
+              }}
             >
               {letter}
             </button>
@@ -131,13 +135,13 @@ function App() {
             onChange={(e) => setUserGuess(e.target.value)}
             placeholder="Guess the word"
             maxLength={word.length}
-            style={{ marginTop: '20px', padding: '5px', fontSize: '16px' }}
+            style={{ marginTop: '20px', padding: '15px', fontSize: '18px' }}
           />
           <button type="submit">Submit Guess</button>
         </form>
         {renderGameStatus()}
         <h3>Wrong guesses: {wrongGuesses} / {maxLives}</h3>
-        <button onClick={resetGame} style={{ marginTop: '20px', padding: '10px', fontSize: '16px' }}>
+        <button onClick={resetGame} style={{ marginTop: '20px', padding: '10px', fontSize: '18px' }}>
           New Game
         </button>
       </div>
