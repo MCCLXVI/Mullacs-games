@@ -50,6 +50,7 @@ const Navbar: React.FC = () => {
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/hangman">Hangman</Link></li>
+                    <li><Link to="/wordle">Wordle</Link></li>
                     <li><Link to="/another-game">Another Game</Link></li>
                 </ul>
             </div>
